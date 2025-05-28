@@ -1,6 +1,7 @@
 import React from "react";
 
 import FlexBox from "@/components/FlexBox";
+import { notFound } from "next/navigation";
 import OrderDetails from "./components/OrderDetails/OrderDetails";
 
 const Page = async ({ params }) => {
@@ -17,28 +18,13 @@ const Page = async ({ params }) => {
     return `${result.order.id}` === orderId;
   });
 
-  if (!orderResult) {
-    return (
-      <FlexBox
-        BoxProps={{
-          sx: {
-            alignItems: "center",
-            justifyContent: "center",
-            flex: 1,
-            fontSize: "2rem",
-          },
-        }}
-      >
-        No data found
-      </FlexBox>
-    );
-  }
+  if (!orderResult.order) notFound();
 
   return (
     <FlexBox>
       <OrderDetails
         order={orderResult.order}
-        orderDetails={orderResult.orderDetails}
+        orderDetails={orderResult.orderDetails || []}
       />
     </FlexBox>
   );

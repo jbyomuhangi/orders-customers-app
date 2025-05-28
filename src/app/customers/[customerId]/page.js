@@ -1,6 +1,7 @@
 import FlexBox from "@/components/FlexBox";
 import React from "react";
 
+import { notFound } from "next/navigation";
 import CustomerDetails from "./components/CustomerDetails";
 
 const Page = async ({ params }) => {
@@ -12,9 +13,7 @@ const Page = async ({ params }) => {
 
   const data = await res.json();
 
-  if (!data) {
-    return <FlexBox>No data found</FlexBox>;
-  }
+  if (!data.customer) notFound();
 
   return (
     <FlexBox>
