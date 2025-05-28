@@ -22,7 +22,7 @@ const Page = async ({ searchParams }) => {
   const { results, total } = data;
 
   return (
-    <Box>
+    <Box sx={{ padding: "10px" }}>
       <CustomersTable customers={results || []} totalCustomers={total} />
     </Box>
   );

@@ -135,11 +135,13 @@ const CustomerDetails = ({ customer, orders }) => {
       <FlexBox>
         <Header>Orders</Header>
 
-        <DataTable
-          columns={orderColumns}
-          data={ordersData}
-          isPaginationShown={false}
-        />
+        <Box sx={{ padding: "10px" }}>
+          <DataTable
+            columns={orderColumns}
+            data={ordersData}
+            isPaginationShown={false}
+          />
+        </Box>
       </FlexBox>
     </FlexBox>
   );

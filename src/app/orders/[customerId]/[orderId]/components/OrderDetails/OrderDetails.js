@@ -138,12 +138,14 @@ const OrderDetails = ({ order, orderDetails }) => {
       <FlexBox>
         <Header>Orders</Header>
 
-        <DataTable
-          columns={orderDetailColumns}
-          data={orderDetails}
-          tableRowDataKey="productId"
-          isPaginationShown={false}
-        />
+        <Box sx={{ padding: "10px" }}>
+          <DataTable
+            columns={orderDetailColumns}
+            data={orderDetails}
+            tableRowDataKey="productId"
+            isPaginationShown={false}
+          />
+        </Box>
       </FlexBox>
     </FlexBox>
   );
