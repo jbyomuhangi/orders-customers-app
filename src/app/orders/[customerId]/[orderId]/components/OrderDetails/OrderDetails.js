@@ -3,8 +3,10 @@
 import Header from "@/app/customers/[customerId]/components/CustomerDetails/Header";
 import DataTable from "@/components/DataTable";
 import FlexBox from "@/components/FlexBox";
+import LinkBase from "@/components/LinkBase";
 import { Box } from "@mui/system";
 import { startCase } from "lodash";
+import { useParams } from "next/navigation";
 import React, { useMemo } from "react";
 
 const styles = {
@@ -25,6 +27,8 @@ const HeaderCell = ({ column }) => {
 };
 
 const OrderDetails = ({ order, orderDetails }) => {
+  const { customerId } = useParams();
+
   const orderFields = useMemo(() => {
     return [
       "customerId",
@@ -40,12 +44,31 @@ const OrderDetails = ({ order, orderDetails }) => {
       "shipPostalCode",
       "shipCountry",
     ].map((field) => {
-      return {
+      const result = {
         key: field,
         label: startCase(field),
+        DataRenderer: ({ data }) => {
+          return <Box>{data}</Box>;
+        },
       };
+
+      if (field === "customerId") {
+        // eslint-disable-next-line react/display-name
+        result.DataRenderer = ({ data }) => {
+          return (
+            <LinkBase
+              href={`/customers/${customerId}`}
+              LinkProps={{ style: { color: "#0999E2" } }}
+            >
+              {data}
+            </LinkBase>
+          );
+        };
+      }
+
+      return result;
     });
-  }, []);
+  }, [customerId]);
 
   const orderDetailColumns = useMemo(() => {
     return [
@@ -91,11 +114,13 @@ const OrderDetails = ({ order, orderDetails }) => {
 
         <Box sx={styles.orderInfoSection}>
           {orderFields.map((field) => {
+            const { DataRenderer } = field;
+
             return (
               <FlexBox key={field.key} BoxProps={{ sx: { gap: "5px" } }}>
                 <Box sx={{ fontWeight: "bold" }}>{field.label}:</Box>
 
-                <Box>{order[field.key]}</Box>
+                <DataRenderer data={order[field.key]} />
               </FlexBox>
             );
           })}
