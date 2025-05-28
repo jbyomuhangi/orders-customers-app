@@ -2,11 +2,13 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import { Box } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { Roboto } from "next/font/google";
 
 import theme from "@/theme";
+import NavBar from "./components/NavBar";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -25,7 +27,13 @@ const RootLayout = ({ children }) => {
     <html lang="en" className={roboto.variable}>
       <body>
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <Box sx={{ marginBottom: "10px" }}>
+              <NavBar />
+            </Box>
+
+            {children}
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

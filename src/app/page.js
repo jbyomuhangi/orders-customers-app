@@ -1,5 +1,9 @@
+import { redirect } from "next/navigation";
+
 const Home = () => {
-  return <div>hello world</div>;
+  redirect("/orders");
+
+  return null;
 };
 
 export default Home;
