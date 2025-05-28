@@ -18,7 +18,7 @@ const Page = async ({ params }) => {
 
   return (
     <FlexBox>
-      <CustomerDetails customer={data.customer} orders={data.orders} />
+      <CustomerDetails customer={data.customer} orders={data.orders || []} />
     </FlexBox>
   );
 };
