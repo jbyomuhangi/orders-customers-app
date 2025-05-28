@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import OrdersTable from "./components/OrdersTable";
 
 const Page = async ({ searchParams }) => {
-  const { page, rowsPerPage } = await searchParams;
+  const { page, rowsPerPage, orderBy } = await searchParams;
 
   if (!isInteger(page) || !isInteger(rowsPerPage)) {
     redirect("/orders?page=0&rowsPerPage=10");
@@ -14,7 +14,7 @@ const Page = async ({ searchParams }) => {
   const skipValue = page * rowsPerPage;
 
   const res = await fetch(
-    `https://uitestapi.occupass.com/api/QueryOrders?take=${rowsPerPage}&skip=${skipValue}`
+    `https://uitestapi.occupass.com/api/QueryOrders?take=${rowsPerPage}&skip=${skipValue}${orderBy ? `&orderBy=${orderBy}` : ""}`
   );
 
   const data = await res.json();
@@ -23,7 +23,7 @@ const Page = async ({ searchParams }) => {
 
   return (
     <Box>
-      <OrdersTable orders={results} />
+      <OrdersTable orders={results || []} />
     </Box>
   );
 };

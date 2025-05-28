@@ -1,6 +1,5 @@
 "use client";
 
-import useSearchParamsMap from "@/hooks/useSearchParamsMap";
 import {
   Box,
   Table,
@@ -12,6 +11,12 @@ import {
   TableRow,
 } from "@mui/material";
 import { useMemo } from "react";
+
+import useSearchParamsMap from "@/hooks/useSearchParamsMap";
+
+const DefaultHeaderRenderer = ({ column }) => {
+  return <>{column.label}</>;
+};
 
 const DataTable = ({ columns, data, TablePaginationProps }) => {
   const { params, handleUpdateSearchParams } = useSearchParamsMap();
@@ -40,7 +45,13 @@ const DataTable = ({ columns, data, TablePaginationProps }) => {
           <TableHead>
             <TableRow>
               {columns.map((column) => {
-                return <TableCell key={column.id}>{column.label}</TableCell>;
+                const { HeaderRenderer = DefaultHeaderRenderer } = column;
+
+                return (
+                  <TableCell key={column.id}>
+                    <HeaderRenderer column={column} />
+                  </TableCell>
+                );
               })}
             </TableRow>
           </TableHead>
