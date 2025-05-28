@@ -13,9 +13,15 @@ import {
 import { useMemo } from "react";
 
 import useSearchParamsMap from "@/hooks/useSearchParamsMap";
+import { emptyObject } from "@/utils/noOpUtils";
 import HeaderCell from "./Cells/HeaderCell";
 
-const DataTable = ({ columns, data, TablePaginationProps }) => {
+const DataTable = ({
+  columns,
+  data,
+  isPaginationShown = true,
+  TablePaginationProps = emptyObject,
+}) => {
   const { params, handleUpdateSearchParams } = useSearchParamsMap();
 
   const handleChangePage = (event, newPage) => {
@@ -35,6 +41,8 @@ const DataTable = ({ columns, data, TablePaginationProps }) => {
     };
   }, [params]);
 
+  const hasData = data.length > 0;
+
   return (
     <Box>
       <TableContainer>
@@ -53,42 +61,56 @@ const DataTable = ({ columns, data, TablePaginationProps }) => {
             </TableRow>
           </TableHead>
 
-          <TableBody>
-            {data.map((item) => {
-              return (
-                <TableRow
-                  key={item.id}
-                  sx={{
-                    "&:nth-of-type(odd)": {
-                      backgroundColor: "#f7f7f7",
-                    },
-                  }}
-                >
-                  {columns.map((column) => {
-                    const { CellRenderer } = column;
+          {hasData && (
+            <TableBody>
+              {data.map((item) => {
+                return (
+                  <TableRow
+                    key={item.id}
+                    sx={{
+                      "&:nth-of-type(odd)": {
+                        backgroundColor: "#f7f7f7",
+                      },
+                    }}
+                  >
+                    {columns.map((column) => {
+                      const { CellRenderer } = column;
 
-                    return (
-                      <TableCell key={column.id}>
-                        {CellRenderer && <CellRenderer item={item} />}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
-          </TableBody>
+                      return (
+                        <TableCell key={column.id}>
+                          {CellRenderer && <CellRenderer item={item} />}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          )}
+
+          {!hasData && (
+            <TableBody>
+              <TableRow>
+                <TableCell colSpan={columns.length} align="center">
+                  No data found
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
 
-      <TablePagination
-        component="div"
-        rowsPerPageOptions={[5, 10, 25]}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        {...TablePaginationProps}
-      />
+      {isPaginationShown && hasData && (
+        <TablePagination
+          component="div"
+          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          {...TablePaginationProps}
+        />
+      )}
     </Box>
   );
 };

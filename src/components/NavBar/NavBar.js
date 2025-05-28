@@ -21,11 +21,15 @@ const NavBar = () => {
   return (
     <FlexBox BoxProps={{ sx: styles.mavBarContainer }}>
       <LinkBase href="/orders">
-        <NavButton isSelected={pathname === "/orders"}>Orders</NavButton>
+        <NavButton isSelected={pathname.startsWith("/orders")}>
+          Orders
+        </NavButton>
       </LinkBase>
 
       <LinkBase href="/customers">
-        <NavButton isSelected={pathname === "/customers"}>Customers</NavButton>
+        <NavButton isSelected={pathname.startsWith("/customers")}>
+          Customers
+        </NavButton>
       </LinkBase>
     </FlexBox>
   );

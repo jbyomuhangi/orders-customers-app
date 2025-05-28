@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import React, { useMemo } from "react";
 
 import DataTable from "@/components/DataTable";
+import LinkBase from "@/components/LinkBase";
 
 const CustomersTable = ({ customers }) => {
   const columns = useMemo(() => {
@@ -13,7 +14,14 @@ const CustomersTable = ({ customers }) => {
         label: "ID",
         orderingKey: "Id",
         CellRenderer: ({ item }) => {
-          return <Box>{item.id}</Box>;
+          return (
+            <LinkBase
+              href={`/customers/${item.id}`}
+              LinkProps={{ style: { color: "#0999E2" } }}
+            >
+              {item.id}
+            </LinkBase>
+          );
         },
       },
       {
