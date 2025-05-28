@@ -64,11 +64,17 @@ const HeaderCell = ({ column }) => {
           opacity,
         }}
       >
-        {orderDirection || !isOrderedColumn === "asc" ? (
-          <ArrowUpwardIcon sx={{ fontSize: "1rem" }} />
-        ) : (
-          <ArrowDownwardIcon sx={{ fontSize: "1rem" }} />
-        )}
+        {(() => {
+          if (!isOrderedColumn) {
+            return <ArrowUpwardIcon sx={{ fontSize: "1rem" }} />;
+          }
+
+          if (orderDirection === "asc") {
+            return <ArrowUpwardIcon sx={{ fontSize: "1rem" }} />;
+          }
+
+          return <ArrowDownwardIcon sx={{ fontSize: "1rem" }} />;
+        })()}
       </Box>
     </ButtonBase>
   );
