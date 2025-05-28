@@ -7,7 +7,7 @@ import DataTable from "@/components/DataTable";
 import DateCell from "@/components/DataTable/Cells/DateCell";
 import LinkBase from "@/components/LinkBase";
 
-const OrdersTable = ({ orders }) => {
+const OrdersTable = ({ orders, totalOrders }) => {
   const columns = useMemo(() => {
     return [
       {
@@ -90,7 +90,11 @@ const OrdersTable = ({ orders }) => {
 
   return (
     <Box>
-      <DataTable columns={columns} data={orders} />
+      <DataTable
+        columns={columns}
+        data={orders}
+        TablePaginationProps={{ count: totalOrders }}
+      />
     </Box>
   );
 };

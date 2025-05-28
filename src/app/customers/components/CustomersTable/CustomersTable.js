@@ -6,7 +6,7 @@ import React, { useMemo } from "react";
 import DataTable from "@/components/DataTable";
 import LinkBase from "@/components/LinkBase";
 
-const CustomersTable = ({ customers }) => {
+const CustomersTable = ({ customers, totalCustomers }) => {
   const columns = useMemo(() => {
     return [
       {
@@ -71,7 +71,11 @@ const CustomersTable = ({ customers }) => {
 
   return (
     <Box>
-      <DataTable columns={columns} data={customers} />
+      <DataTable
+        columns={columns}
+        data={customers}
+        TablePaginationProps={{ count: totalCustomers }}
+      />
     </Box>
   );
 };

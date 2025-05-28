@@ -14,16 +14,16 @@ const Page = async ({ searchParams }) => {
   const skipValue = page * rowsPerPage;
 
   const res = await fetch(
-    `https://uitestapi.occupass.com/api/QueryCustomers?take=${rowsPerPage}&skip=${skipValue}${orderBy ? `&orderBy=${orderBy}` : ""}`
+    `https://uitestapi.occupass.com/api/QueryCustomers?include=total&take=${rowsPerPage}&skip=${skipValue}${orderBy ? `&orderBy=${orderBy}` : ""}`
   );
 
   const data = await res.json();
 
-  const { results } = data;
+  const { results, total } = data;
 
   return (
     <Box>
-      <CustomersTable customers={results || []} />
+      <CustomersTable customers={results || []} totalCustomers={total} />
     </Box>
   );
 };
