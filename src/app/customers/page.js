@@ -1,7 +1,31 @@
-import React from "react";
+import { Box } from "@mui/material";
+import { redirect } from "next/navigation";
 
-const Page = () => {
-  return <div>Customers Page</div>;
+import isInteger from "@/utils/validationUtils/isInteger";
+import CustomersTable from "./components/CustomersTable";
+
+const Page = async ({ searchParams }) => {
+  const { page, rowsPerPage, orderBy } = await searchParams;
+
+  if (!isInteger(page) || !isInteger(rowsPerPage)) {
+    redirect("/customers?page=0&rowsPerPage=10");
+  }
+
+  const skipValue = page * rowsPerPage;
+
+  const res = await fetch(
+    `https://uitestapi.occupass.com/api/QueryCustomers?take=${rowsPerPage}&skip=${skipValue}${orderBy ? `&orderBy=${orderBy}` : ""}`
+  );
+
+  const data = await res.json();
+
+  const { results } = data;
+
+  return (
+    <Box>
+      <CustomersTable customers={results || []} />
+    </Box>
+  );
 };
 
 export default Page;

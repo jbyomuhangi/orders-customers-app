@@ -13,7 +13,7 @@ const OrdersTable = ({ orders }) => {
         label: "ID",
         orderingKey: "Id",
         CellRenderer: ({ item }) => {
-          return <div>{item.id}</div>;
+          return <Box>{item.id}</Box>;
         },
       },
       {
@@ -21,7 +21,7 @@ const OrdersTable = ({ orders }) => {
         label: "Customer ID",
         orderingKey: "CustomerId",
         CellRenderer: ({ item }) => {
-          return <div>{item.customerId}</div>;
+          return <Box>{item.customerId}</Box>;
         },
       },
 
@@ -30,7 +30,7 @@ const OrdersTable = ({ orders }) => {
         label: "Order date",
         orderingKey: "OrderDate",
         CellRenderer: ({ item }) => {
-          return <div>{item.orderDate}</div>;
+          return <Box>{item.orderDate}</Box>;
         },
       },
 
@@ -39,7 +39,7 @@ const OrdersTable = ({ orders }) => {
         label: "Shipped Date",
         orderingKey: "ShippedDate",
         CellRenderer: ({ item }) => {
-          return <div>{item.shippedDate}</div>;
+          return <Box>{item.shippedDate}</Box>;
         },
       },
 
@@ -48,7 +48,7 @@ const OrdersTable = ({ orders }) => {
         label: "Ship name",
         orderingKey: "ShipName",
         CellRenderer: ({ item }) => {
-          return <div>{item.shipName}</div>;
+          return <Box>{item.shipName}</Box>;
         },
       },
 
@@ -57,7 +57,7 @@ const OrdersTable = ({ orders }) => {
         label: "Ship city",
         orderingKey: "ShipCity",
         CellRenderer: ({ item }) => {
-          return <div>{item.shipCity}</div>;
+          return <Box>{item.shipCity}</Box>;
         },
       },
 
@@ -66,7 +66,7 @@ const OrdersTable = ({ orders }) => {
         label: "Ship country",
         orderingKey: "ShipCountry",
         CellRenderer: ({ item }) => {
-          return <div>{item.shipCountry}</div>;
+          return <Box>{item.shipCountry}</Box>;
         },
       },
     ];

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
+import { redirect } from "next/navigation";
 
 import isInteger from "@/utils/validationUtils/isInteger";
-import { redirect } from "next/navigation";
 import OrdersTable from "./components/OrdersTable";
 
 const Page = async ({ searchParams }) => {
