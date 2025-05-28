@@ -20,6 +20,10 @@ const styles = {
   },
 };
 
+const HeaderCell = ({ column }) => {
+  return <Box>{column.label}</Box>;
+};
+
 const OrderDetails = ({ order, orderDetails }) => {
   const orderFields = useMemo(() => {
     return [
@@ -48,7 +52,7 @@ const OrderDetails = ({ order, orderDetails }) => {
       {
         id: "productId",
         label: "Product ID",
-        orderingKey: "productId",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.productId}</Box>;
         },
@@ -56,7 +60,7 @@ const OrderDetails = ({ order, orderDetails }) => {
       {
         id: "quantity",
         label: "Quantity",
-        orderingKey: "quantity",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.quantity}</Box>;
         },
@@ -64,7 +68,7 @@ const OrderDetails = ({ order, orderDetails }) => {
       {
         id: "unitPrice",
         label: "Unit Price",
-        orderingKey: "unitPrice",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.unitPrice}</Box>;
         },
@@ -72,7 +76,7 @@ const OrderDetails = ({ order, orderDetails }) => {
       {
         id: "discount",
         label: "Discount",
-        orderingKey: "discount",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.discount}</Box>;
         },

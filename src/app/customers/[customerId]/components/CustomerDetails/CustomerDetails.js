@@ -23,6 +23,10 @@ const styles = {
   },
 };
 
+const HeaderCell = ({ column }) => {
+  return <Box>{column.label}</Box>;
+};
+
 const CustomerDetails = ({ customer, orders }) => {
   const { customerId } = useParams();
 
@@ -54,7 +58,7 @@ const CustomerDetails = ({ customer, orders }) => {
       {
         id: "id",
         label: "ID",
-        orderingKey: "Id",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return (
             <LinkBase
@@ -69,7 +73,7 @@ const CustomerDetails = ({ customer, orders }) => {
       {
         id: "order-date",
         label: "Order date",
-        orderingKey: "OrderDate",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.orderDate}</Box>;
         },
@@ -77,7 +81,7 @@ const CustomerDetails = ({ customer, orders }) => {
       {
         id: "shipped-date",
         label: "Shipped Date",
-        orderingKey: "ShippedDate",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.shippedDate}</Box>;
         },
@@ -85,7 +89,7 @@ const CustomerDetails = ({ customer, orders }) => {
       {
         id: "ship-name",
         label: "Ship name",
-        orderingKey: "ShipName",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.shipName}</Box>;
         },
@@ -93,7 +97,7 @@ const CustomerDetails = ({ customer, orders }) => {
       {
         id: "ship-city",
         label: "Ship city",
-        orderingKey: "ShipCity",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.shipCity}</Box>;
         },
@@ -101,7 +105,7 @@ const CustomerDetails = ({ customer, orders }) => {
       {
         id: "ship-country",
         label: "Ship country",
-        orderingKey: "ShipCountry",
+        HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
           return <Box>{item.shipCountry}</Box>;
         },
