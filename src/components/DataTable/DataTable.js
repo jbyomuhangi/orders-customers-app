@@ -39,7 +39,7 @@ const DataTable = ({ columns, data, TablePaginationProps }) => {
     <Box>
       <TableContainer>
         <Table>
-          <TableHead>
+          <TableHead sx={{ backgroundColor: "#dfeafc" }}>
             <TableRow>
               {columns.map((column) => {
                 const { HeaderRenderer = HeaderCell } = column;
@@ -56,7 +56,14 @@ const DataTable = ({ columns, data, TablePaginationProps }) => {
           <TableBody>
             {data.map((item) => {
               return (
-                <TableRow key={item.id}>
+                <TableRow
+                  key={item.id}
+                  sx={{
+                    "&:nth-of-type(odd)": {
+                      backgroundColor: "#f7f7f7",
+                    },
+                  }}
+                >
                   {columns.map((column) => {
                     const { CellRenderer } = column;
 
