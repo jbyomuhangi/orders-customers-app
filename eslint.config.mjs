@@ -27,6 +27,11 @@ const eslintConfig = [
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "error",
     },
+
+    env: {
+      browser: true,
+      node: true,
+    },
   }),
 ];
 
