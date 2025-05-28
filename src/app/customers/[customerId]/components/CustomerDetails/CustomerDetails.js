@@ -1,6 +1,7 @@
 "use client";
 
 import DataTable from "@/components/DataTable";
+import DateCell from "@/components/DataTable/Cells/DateCell";
 import FlexBox from "@/components/FlexBox";
 import LinkBase from "@/components/LinkBase";
 import useSearchParamsMap from "@/hooks/useSearchParamsMap";
@@ -75,7 +76,7 @@ const CustomerDetails = ({ customer, orders }) => {
         label: "Order date",
         HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
-          return <Box>{item.orderDate}</Box>;
+          return <DateCell msJsonDate={item.orderDate} />;
         },
       },
       {
@@ -83,7 +84,7 @@ const CustomerDetails = ({ customer, orders }) => {
         label: "Shipped Date",
         HeaderRenderer: HeaderCell,
         CellRenderer: ({ item }) => {
-          return <Box>{item.shippedDate}</Box>;
+          return <DateCell msJsonDate={item.shippedDate} />;
         },
       },
       {

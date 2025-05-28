@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import React, { useMemo } from "react";
 
 import DataTable from "@/components/DataTable";
+import DateCell from "@/components/DataTable/Cells/DateCell";
 import LinkBase from "@/components/LinkBase";
 
 const OrdersTable = ({ orders }) => {
@@ -45,7 +46,7 @@ const OrdersTable = ({ orders }) => {
         label: "Order date",
         orderingKey: "OrderDate",
         CellRenderer: ({ item }) => {
-          return <Box>{item.orderDate}</Box>;
+          return <DateCell msJsonDate={item.orderDate} />;
         },
       },
 
@@ -54,7 +55,7 @@ const OrdersTable = ({ orders }) => {
         label: "Shipped Date",
         orderingKey: "ShippedDate",
         CellRenderer: ({ item }) => {
-          return <Box>{item.shippedDate}</Box>;
+          return <DateCell msJsonDate={item.shippedDate} />;
         },
       },
 

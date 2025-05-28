@@ -2,6 +2,7 @@
 
 import Header from "@/app/customers/[customerId]/components/CustomerDetails/Header";
 import DataTable from "@/components/DataTable";
+import DateCell from "@/components/DataTable/Cells/DateCell";
 import FlexBox from "@/components/FlexBox";
 import LinkBase from "@/components/LinkBase";
 import { Box } from "@mui/system";
@@ -63,6 +64,13 @@ const OrderDetails = ({ order, orderDetails }) => {
               {data}
             </LinkBase>
           );
+        };
+      }
+
+      if (field.endsWith("Date")) {
+        // eslint-disable-next-line react/display-name
+        result.DataRenderer = ({ data }) => {
+          return <DateCell msJsonDate={data} />;
         };
       }
 
