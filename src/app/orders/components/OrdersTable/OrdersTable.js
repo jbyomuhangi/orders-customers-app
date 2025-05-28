@@ -16,7 +16,7 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return (
             <LinkBase
-              href={`/orders/${item.id}`}
+              href={`/orders/${item.customerId}/${item.id}`}
               LinkProps={{ style: { color: "#0999E2" } }}
             >
               {item.id}

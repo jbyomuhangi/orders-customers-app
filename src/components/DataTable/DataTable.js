@@ -19,6 +19,7 @@ import HeaderCell from "./Cells/HeaderCell";
 const DataTable = ({
   columns,
   data,
+  tableRowDataKey = "id",
   isPaginationShown = true,
   TablePaginationProps = emptyObject,
 }) => {
@@ -66,7 +67,7 @@ const DataTable = ({
               {data.map((item) => {
                 return (
                   <TableRow
-                    key={item.id}
+                    key={item[tableRowDataKey]}
                     sx={{
                       "&:nth-of-type(odd)": {
                         backgroundColor: "#f7f7f7",

@@ -3,8 +3,10 @@
 import DataTable from "@/components/DataTable";
 import FlexBox from "@/components/FlexBox";
 import LinkBase from "@/components/LinkBase";
+import useSearchParamsMap from "@/hooks/useSearchParamsMap";
 import { Box } from "@mui/material";
 import { startCase } from "lodash";
+import { useParams } from "next/navigation";
 import React, { useMemo } from "react";
 import Header from "./Header";
 
@@ -22,6 +24,8 @@ const styles = {
 };
 
 const CustomerDetails = ({ customer, orders }) => {
+  const { customerId } = useParams();
+
   const customerFields = useMemo(() => {
     return [
       "contactTitle",
@@ -54,7 +58,7 @@ const CustomerDetails = ({ customer, orders }) => {
         CellRenderer: ({ item }) => {
           return (
             <LinkBase
-              href={`/orders/${item.id}`}
+              href={`/orders/${customerId}/${item.id}`}
               LinkProps={{ style: { color: "#0999E2" } }}
             >
               {item.id}
@@ -103,7 +107,7 @@ const CustomerDetails = ({ customer, orders }) => {
         },
       },
     ];
-  }, []);
+  }, [customerId]);
 
   return (
     <FlexBox BoxProps={{ sx: styles.customerDetailsContainer }}>
