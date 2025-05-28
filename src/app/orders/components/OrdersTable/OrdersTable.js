@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import React, { useMemo } from "react";
 
 import DataTable from "@/components/DataTable";
-import HeaderCell from "./Cells/HeaderCell";
 
 const OrdersTable = ({ orders }) => {
   const columns = useMemo(() => {
@@ -16,7 +15,6 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return <div>{item.id}</div>;
         },
-        HeaderRenderer: HeaderCell,
       },
       {
         id: "customer-id",
@@ -25,7 +23,6 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return <div>{item.customerId}</div>;
         },
-        HeaderRenderer: HeaderCell,
       },
 
       {
@@ -35,7 +32,6 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return <div>{item.orderDate}</div>;
         },
-        HeaderRenderer: HeaderCell,
       },
 
       {
@@ -45,7 +41,6 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return <div>{item.shippedDate}</div>;
         },
-        HeaderRenderer: HeaderCell,
       },
 
       {
@@ -55,7 +50,6 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return <div>{item.shipName}</div>;
         },
-        HeaderRenderer: HeaderCell,
       },
 
       {
@@ -65,7 +59,6 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return <div>{item.shipCity}</div>;
         },
-        HeaderRenderer: HeaderCell,
       },
 
       {
@@ -75,7 +68,6 @@ const OrdersTable = ({ orders }) => {
         CellRenderer: ({ item }) => {
           return <div>{item.shipCountry}</div>;
         },
-        HeaderRenderer: HeaderCell,
       },
     ];
   }, []);

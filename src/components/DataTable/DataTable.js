@@ -13,10 +13,7 @@ import {
 import { useMemo } from "react";
 
 import useSearchParamsMap from "@/hooks/useSearchParamsMap";
-
-const DefaultHeaderRenderer = ({ column }) => {
-  return <>{column.label}</>;
-};
+import HeaderCell from "./Cells/HeaderCell";
 
 const DataTable = ({ columns, data, TablePaginationProps }) => {
   const { params, handleUpdateSearchParams } = useSearchParamsMap();
@@ -45,7 +42,7 @@ const DataTable = ({ columns, data, TablePaginationProps }) => {
           <TableHead>
             <TableRow>
               {columns.map((column) => {
-                const { HeaderRenderer = DefaultHeaderRenderer } = column;
+                const { HeaderRenderer = HeaderCell } = column;
 
                 return (
                   <TableCell key={column.id}>
