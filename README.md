@@ -1,4 +1,10 @@
+## Deployment info
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b4ff5f96-7c48-4289-ad3e-1ec8f430d9b5/deploy-status)](https://app.netlify.com/projects/orders-customers-app/deploys)
+
+[Live link](https://orders-customers-app.netlify.app/orders?page=0&rowsPerPage=10)
+
 ## Getting Started
+
 
 ### Note: Please make sure you are using some v20 version of node (preferably the latest LTS version).
 
