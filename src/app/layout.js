@@ -1,3 +1,5 @@
+import NavBar from "@/components/NavBar";
+import theme from "@/theme";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -6,9 +8,7 @@ import { Box } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { Roboto } from "next/font/google";
-
-import NavBar from "@/components/NavBar";
-import theme from "@/theme";
+import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -26,6 +26,8 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en" className={roboto.variable}>
       <body>
+        <NextTopLoader />
+
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <Box sx={{ marginBottom: "10px" }}>
