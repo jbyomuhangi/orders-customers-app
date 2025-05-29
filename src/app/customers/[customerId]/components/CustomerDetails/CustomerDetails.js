@@ -4,7 +4,6 @@ import DataTable from "@/components/DataTable";
 import DateCell from "@/components/DataTable/Cells/DateCell";
 import FlexBox from "@/components/FlexBox";
 import LinkBase from "@/components/LinkBase";
-import useSearchParamsMap from "@/hooks/useSearchParamsMap";
 import { Box } from "@mui/material";
 import { startCase } from "lodash";
 import { useParams } from "next/navigation";
