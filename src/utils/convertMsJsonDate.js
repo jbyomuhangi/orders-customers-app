@@ -1,6 +1,8 @@
 const convertMsJsonDate = (msJsonDate) => {
+  if (!msJsonDate) return null;
+
   const match = /\/Date\((-?\d+)([+-]\d{4})?\)\//.exec(msJsonDate);
-  if (!match) throw new Error("Invalid date format");
+  if (!match) throw null;
 
   const timestamp = Number(match[1]);
   const offset = match[2];
