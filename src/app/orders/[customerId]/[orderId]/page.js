@@ -7,13 +7,21 @@ import OrderDetails from "./components/OrderDetails/OrderDetails";
 const Page = async ({ params }) => {
   const { customerId, orderId } = await params;
 
-  const res = await fetch(
-    `https://uitestapi.occupass.com/api/GetOrders?customerId=${customerId}`
-  );
+  let data;
+  try {
+    const res = await fetch(
+      `https://uitestapi.occupass.com/api/GetOrders?customerId=${customerId}`
+    );
 
-  const data = await res.json();
+    data = await res.json();
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
+
+  if (!data) notFound();
+
   const { results = [] } = data;
-
   const orderResult = results.find((result) => {
     return `${result.order.id}` === orderId;
   });

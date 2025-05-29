@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import isInteger from "@/utils/validationUtils/isInteger";
 import CustomersTable from "./components/CustomersTable";
@@ -11,13 +11,21 @@ const Page = async ({ searchParams }) => {
     redirect("/customers?page=0&rowsPerPage=10");
   }
 
-  const skipValue = page * rowsPerPage;
+  let data;
+  try {
+    const skipValue = page * rowsPerPage;
 
-  const res = await fetch(
-    `https://uitestapi.occupass.com/api/QueryCustomers?include=total&take=${rowsPerPage}&skip=${skipValue}${orderBy ? `&orderBy=${orderBy}` : ""}`
-  );
+    const res = await fetch(
+      `https://uitestapi.occupass.com/api/QueryCustomers?include=total&take=${rowsPerPage}&skip=${skipValue}${orderBy ? `&orderBy=${orderBy}` : ""}`
+    );
 
-  const data = await res.json();
+    data = await res.json();
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
+
+  if (!data) notFound();
 
   const { results, total } = data;
 
